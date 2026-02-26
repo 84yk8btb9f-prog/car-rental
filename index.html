@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>Premium Car Rental Athens</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#1a2347;--navy-deep:#0e1428;--navy-mid:#243060;--gold:#c9a84c;--gold-light:#e8c97a;--white:#fff;--off:#f4f3ef;--gray:#8a8fa8;--light:#e4e5ec;}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:'DM Sans',sans-serif;background:var(--off);color:var(--navy);overflow-x:hidden;}
+img{display:block;width:100%;object-fit:cover;}
+button,a{cursor:pointer;}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:1000;height:68px;padding:0 5%;display:flex;align-items:center;justify-content:space-between;background:rgba(14,20,40,.97);backdrop-filter:blur(14px);border-bottom:1px solid rgba(201,168,76,.18);}
+.nav-logo{font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:700;color:var(--white);letter-spacing:.05em;display:flex;align-items:center;gap:10px;text-decoration:none;}
+.nav-logo span{color:var(--gold);}
+.logo-mark{width:32px;height:32px;border:1.5px solid var(--gold);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.75rem;color:var(--gold);}
+.nav-links{display:flex;gap:28px;list-style:none;}
+.nav-links a{color:rgba(255,255,255,.7);font-size:.77rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;text-decoration:none;transition:color .2s;}
+.nav-links a:hover,.nav-links a.active{color:var(--gold);}
+.nav-right{display:flex;align-items:center;gap:12px;}
+.lang-toggle{display:flex;border:1px solid rgba(201,168,76,.3);border-radius:3px;overflow:hidden;}
+.lang-btn{padding:5px 11px;background:transparent;border:none;color:rgba(255,255,255,.5);font-size:.7rem;font-weight:600;letter-spacing:.08em;font-family:'DM Sans',sans-serif;transition:all .2s;}
+.lang-btn.active{background:var(--gold);color:var(--navy);}
+.nav-cta{padding:9px 20px;background:var(--gold);color:var(--navy);font-family:'DM Sans',sans-serif;font-size:.75rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;border:none;transition:all .25s;}
+.nav-cta:hover{background:var(--gold-light);}
+.hamburger{display:none;flex-direction:column;gap:5px;background:none;border:none;padding:4px;}
+.hamburger span{width:22px;height:2px;background:var(--white);display:block;transition:all .3s;}
+.mobile-nav{display:none;position:fixed;top:68px;left:0;right:0;bottom:0;background:rgba(14,20,40,.98);z-index:999;flex-direction:column;align-items:center;justify-content:center;gap:28px;}
+.mobile-nav.open{display:flex;}
+.mobile-nav a{font-family:'Cormorant Garamond',serif;font-size:2rem;color:var(--white);text-decoration:none;transition:color .2s;}
+.mobile-nav a:hover{color:var(--gold);}
+.mobile-lang{display:flex;gap:14px;margin-top:8px;}
+.mobile-lang button{background:none;border:1px solid rgba(201,168,76,.35);color:rgba(255,255,255,.55);padding:7px 18px;font-family:'DM Sans',sans-serif;font-size:.85rem;transition:all .2s;}
+.mobile-lang button.active{background:var(--gold);color:var(--navy);border-color:var(--gold);}
+
+/* PAGES */
+.page{display:none;}
+.page.active{display:block;}
+
+/* HERO */
+.hero{position:relative;min-height:100vh;display:flex;align-items:center;overflow:hidden;}
+.hero-bg{position:absolute;inset:0;background:url('https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?w=1800&q=85') center/cover no-repeat;}
+.hero-ov{position:absolute;inset:0;background:linear-gradient(110deg,rgba(10,16,35,.93) 0%,rgba(14,20,40,.78) 55%,rgba(20,28,60,.6) 100%);}
+.hero-content{position:relative;z-index:2;padding:68px 5% 0;max-width:1300px;width:100%;margin:0 auto;}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:12px;margin-bottom:22px;animation:fadeUp .8s ease both;}
+.hero-ew-line{width:34px;height:1px;background:var(--gold);}
+.hero-eyebrow span{font-size:.68rem;letter-spacing:.25em;text-transform:uppercase;color:var(--gold);font-weight:500;}
+.hero-title{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(3rem,7vw,6.5rem);color:var(--white);line-height:1.0;margin-bottom:22px;animation:fadeUp .8s .1s ease both;}
+.hero-title em{font-style:italic;color:var(--gold);}
+.hero-sub{font-size:clamp(.88rem,1.5vw,1rem);color:rgba(255,255,255,.52);max-width:450px;line-height:1.8;margin-bottom:38px;font-weight:300;animation:fadeUp .8s .2s ease both;}
+.hero-btns{display:flex;gap:13px;flex-wrap:wrap;animation:fadeUp .8s .3s ease both;}
+.btn-gold{padding:13px 32px;background:var(--gold);color:var(--navy);font-family:'DM Sans',sans-serif;font-size:.77rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;border:none;transition:all .3s;display:inline-block;text-decoration:none;}
+.btn-gold:hover{background:var(--gold-light);transform:translateY(-2px);box-shadow:0 8px 28px rgba(201,168,76,.35);}
+.btn-outline{padding:13px 32px;background:transparent;border:1px solid rgba(255,255,255,.22);color:rgba(255,255,255,.72);font-family:'DM Sans',sans-serif;font-size:.77rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;transition:all .3s;display:inline-block;text-decoration:none;}
+.btn-outline:hover{border-color:var(--gold);color:var(--gold);}
+.hero-stats{display:flex;gap:40px;margin-top:56px;padding-bottom:60px;animation:fadeUp .8s .5s ease both;flex-wrap:wrap;}
+.stat-item{border-left:2px solid rgba(201,168,76,.28);padding-left:16px;}
+.stat-num{font-family:'Cormorant Garamond',serif;font-size:2.5rem;color:var(--gold);line-height:1;font-weight:600;}
+.stat-label{font-size:.63rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.32);margin-top:4px;}
+.hero-scroll{position:absolute;bottom:32px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:8px;animation:fadeUp 1s .9s ease both;}
+.hero-scroll span{font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.22);}
+.scroll-bar{width:1px;height:44px;background:linear-gradient(to bottom,rgba(201,168,76,.7),transparent);animation:pulse 2s infinite;}
+
+/* TRUST BAR */
+.trust-bar{background:var(--navy-deep);padding:20px 5%;display:flex;align-items:center;justify-content:center;gap:40px;flex-wrap:wrap;border-bottom:1px solid rgba(201,168,76,.1);}
+.trust-item{display:flex;align-items:center;gap:9px;font-size:.76rem;color:rgba(255,255,255,.45);}
+.trust-item span:first-child{font-size:1rem;}
+
+/* SECTIONS */
+.section{padding:88px 5%;}
+.sec-dark{background:var(--navy);}
+.sec-light{background:var(--off);}
+.sec-white{background:var(--white);}
+.sec-head{text-align:center;margin-bottom:60px;}
+.eyebrow{display:inline-flex;align-items:center;gap:10px;margin-bottom:14px;}
+.ew-line{width:26px;height:1px;}
+.ew-g{background:var(--gold);}
+.ew-n{background:var(--navy);}
+.ew-txt{font-size:.67rem;letter-spacing:.25em;text-transform:uppercase;font-weight:600;}
+.ew-gold{color:var(--gold);}
+.ew-navy{color:var(--navy);}
+.sec-title{font-family:'Cormorant Garamond',serif;font-size:clamp(1.9rem,4vw,3.4rem);font-weight:400;line-height:1.15;}
+.sec-title.light{color:var(--white);}
+.sec-title.dark{color:var(--navy);}
+.sec-title em{font-style:italic;color:var(--gold);}
+.sec-sub{max-width:490px;margin:14px auto 0;font-size:.9rem;line-height:1.8;color:var(--gray);font-weight:300;}
+
+/* ABOUT */
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;max-width:1180px;margin:0 auto;}
+.about-imgs{position:relative;}
+.about-img-main{height:460px;object-fit:cover;width:100%;}
+.about-img-accent{position:absolute;bottom:-26px;right:-26px;width:55%;height:210px;object-fit:cover;border:4px solid var(--white);}
+.about-badge{position:absolute;top:26px;left:-18px;background:var(--gold);padding:18px 22px;text-align:center;}
+.about-badge-num{font-family:'Cormorant Garamond',serif;font-size:2.2rem;font-weight:700;color:var(--navy);line-height:1;}
+.about-badge-lbl{font-size:.62rem;letter-spacing:.15em;text-transform:uppercase;color:var(--navy-mid);font-weight:600;margin-top:3px;}
+.about-text .eyebrow{justify-content:flex-start;}
+.about-body{font-size:.9rem;line-height:1.85;color:#5a6180;font-weight:300;margin-bottom:16px;margin-top:18px;}
+.check-list{list-style:none;margin-bottom:26px;}
+.check-list li{padding:9px 0;border-bottom:1px solid var(--light);font-size:.85rem;color:var(--navy);display:flex;align-items:center;gap:11px;}
+.check-list li::before{content:'';width:5px;height:5px;background:var(--gold);border-radius:50%;flex-shrink:0;}
+
+/* SERVICES GRID */
+.srv-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:3px;max-width:1180px;margin:0 auto;}
+.srv-card{position:relative;overflow:hidden;}
+.srv-card img{height:310px;object-fit:cover;width:100%;transition:transform .5s ease;}
+.srv-card:hover img{transform:scale(1.06);}
+.srv-ov{position:absolute;inset:0;background:linear-gradient(to top,rgba(10,16,35,.9) 0%,rgba(10,16,35,.15) 65%,transparent 100%);display:flex;flex-direction:column;justify-content:flex-end;padding:26px;}
+.srv-num{font-family:'Cormorant Garamond',serif;font-size:2.8rem;color:rgba(201,168,76,.18);font-weight:300;line-height:1;margin-bottom:5px;}
+.srv-line{width:28px;height:2px;background:var(--gold);margin-bottom:10px;}
+.srv-title{font-family:'Cormorant Garamond',serif;font-size:1.35rem;color:var(--white);font-weight:500;margin-bottom:7px;}
+.srv-desc{font-size:.78rem;color:rgba(255,255,255,.55);line-height:1.6;}
+
+/* FLEET */
+.fleet-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;max-width:1220px;margin:0 auto;}
+.fleet-card{background:var(--white);overflow:hidden;transition:all .3s;border:1px solid var(--light);}
+.fleet-card:hover{box-shadow:0 18px 55px rgba(26,35,71,.13);transform:translateY(-4px);}
+.fleet-img-wrap{position:relative;overflow:hidden;}
+.fleet-img-wrap img{height:195px;object-fit:cover;width:100%;transition:transform .5s;}
+.fleet-card:hover .fleet-img-wrap img{transform:scale(1.07);}
+.fleet-badge{position:absolute;top:11px;left:11px;background:var(--gold);color:var(--navy);font-size:.6rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:4px 9px;}
+.fleet-body{padding:20px 18px;}
+.fleet-cat{font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:5px;}
+.fleet-name{font-family:'Cormorant Garamond',serif;font-size:1.25rem;font-weight:600;color:var(--navy);margin-bottom:10px;}
+.fleet-specs{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:14px;}
+.spec{font-size:.67rem;padding:3px 8px;background:var(--off);color:var(--gray);}
+.fleet-btn{width:100%;padding:10px;background:var(--navy);color:var(--white);border:none;font-family:'DM Sans',sans-serif;font-size:.7rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;transition:background .25s;}
+.fleet-btn:hover{background:var(--gold);color:var(--navy);}
+
+/* GALLERY STRIP */
+.gallery-strip{display:flex;gap:3px;height:260px;overflow:hidden;}
+.gallery-strip img{flex:1;object-fit:cover;min-width:0;transition:flex .4s ease;}
+.gallery-strip img:hover{flex:2.5;}
+
+/* REVIEWS */
+.reviews-wrap{max-width:1080px;margin:0 auto;}
+.rating-bar{display:flex;align-items:center;gap:36px;background:var(--navy-mid);padding:34px 42px;margin-bottom:38px;border-left:4px solid var(--gold);flex-wrap:wrap;}
+.rating-score{font-family:'Cormorant Garamond',serif;font-size:4.8rem;font-weight:700;color:var(--gold);line-height:1;}
+.rating-stars{font-size:1.2rem;color:var(--gold);letter-spacing:3px;margin-top:6px;}
+.rating-ct{font-size:.78rem;color:rgba(255,255,255,.33);margin-top:4px;}
+.bar-wrap{flex:1;min-width:180px;}
+.bar-row{display:flex;align-items:center;gap:10px;margin-bottom:6px;}
+.bar-lbl{font-size:.7rem;color:rgba(255,255,255,.38);width:10px;}
+.bar-track{flex:1;height:4px;background:rgba(255,255,255,.08);border-radius:2px;overflow:hidden;}
+.bar-fill{height:100%;background:var(--gold);border-radius:2px;}
+.rev-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+.rev-card{background:var(--navy-mid);padding:28px;border-bottom:2px solid transparent;transition:border-color .3s;}
+.rev-card:hover{border-color:var(--gold);}
+.rev-stars{color:var(--gold);font-size:.82rem;letter-spacing:2px;margin-bottom:11px;}
+.rev-text{font-size:.84rem;color:rgba(255,255,255,.58);line-height:1.75;margin-bottom:16px;font-style:italic;}
+.rev-author{display:flex;align-items:center;gap:11px;}
+.rev-avatar{width:34px;height:34px;border-radius:50%;background:rgba(201,168,76,.13);border:1px solid rgba(201,168,76,.28);display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-size:.95rem;color:var(--gold);font-weight:600;flex-shrink:0;}
+.rev-name{font-size:.8rem;font-weight:600;color:var(--white);}
+.rev-date{font-size:.68rem;color:rgba(255,255,255,.23);}
+
+/* CONTACT */
+.contact-grid{display:grid;grid-template-columns:1fr 1.4fr;gap:68px;max-width:1080px;margin:0 auto;}
+.contact-img{position:relative;overflow:hidden;}
+.contact-img img{height:100%;min-height:480px;object-fit:cover;width:100%;}
+.contact-img-badge{position:absolute;bottom:0;left:0;right:0;background:linear-gradient(to top,rgba(10,16,35,.95),transparent);padding:30px 26px;}
+.c-items{}
+.c-item{display:flex;gap:13px;align-items:flex-start;padding:18px 0;border-bottom:1px solid var(--light);}
+.c-icon{width:40px;height:40px;background:var(--navy);display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0;}
+.c-label{font-size:.66rem;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:3px;}
+.c-val{font-size:.87rem;color:var(--navy);}
+.c-val a{color:var(--navy);text-decoration:none;}
+.c-val a:hover{color:var(--gold);}
+.form-box{background:var(--navy);padding:40px;}
+.form-title{font-family:'Cormorant Garamond',serif;font-size:1.75rem;color:var(--white);font-weight:500;margin-bottom:26px;}
+.fg{display:grid;grid-template-columns:1fr 1fr;gap:13px;}
+.fg-full{grid-column:1/-1;}
+.fgrp{display:flex;flex-direction:column;gap:6px;}
+.flabel{font-size:.66rem;letter-spacing:.15em;text-transform:uppercase;color:rgba(255,255,255,.32);font-weight:500;}
+.finput,.fselect,.ftextarea{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);padding:11px 14px;color:var(--white);font-family:'DM Sans',sans-serif;font-size:.85rem;outline:none;transition:border-color .25s;width:100%;}
+.finput:focus,.fselect:focus,.ftextarea:focus{border-color:var(--gold);}
+.ftextarea{resize:vertical;min-height:90px;}
+.fselect option{background:var(--navy);}
+.fsubmit{width:100%;padding:13px;margin-top:8px;background:var(--gold);color:var(--navy);border:none;font-family:'DM Sans',sans-serif;font-size:.78rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;transition:all .3s;}
+.fsubmit:hover{background:var(--gold-light);transform:translateY(-1px);}
+
+/* CTA BANNER */
+.cta-banner{position:relative;overflow:hidden;padding:90px 5%;text-align:center;}
+.cta-banner-img{position:absolute;inset:0;background:url('https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?w=1600&q=85') center/cover no-repeat;}
+.cta-banner-ov{position:absolute;inset:0;background:rgba(10,16,35,.83);}
+.cta-banner-c{position:relative;z-index:2;}
+.cta-banner h2{font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,5vw,3.8rem);color:var(--white);font-weight:300;margin-bottom:14px;}
+.cta-banner h2 em{font-style:italic;color:var(--gold);}
+.cta-banner p{color:rgba(255,255,255,.5);font-size:.92rem;margin-bottom:32px;}
+
+/* PAGE HEADER */
+.page-header{position:relative;overflow:hidden;padding:120px 5% 76px;text-align:center;}
+.ph-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;}
+.ph-ov{position:absolute;inset:0;background:rgba(10,16,35,.82);}
+.ph-c{position:relative;z-index:2;}
+
+/* FOOTER */
+footer{background:var(--navy-deep);padding:56px 5% 26px;border-top:1px solid rgba(201,168,76,.12);}
+.footer-top{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:40px;padding-bottom:40px;border-bottom:1px solid rgba(255,255,255,.06);margin-bottom:22px;}
+.f-logo{font-family:'Cormorant Garamond',serif;font-size:1.35rem;font-weight:700;color:var(--white);margin-bottom:11px;}
+.f-logo span{color:var(--gold);}
+.f-desc{font-size:.78rem;color:rgba(255,255,255,.28);line-height:1.75;max-width:230px;}
+.f-col-title{font-size:.63rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:14px;}
+.f-links{list-style:none;}
+.f-links li{margin-bottom:8px;}
+.f-links a{font-size:.78rem;color:rgba(255,255,255,.32);text-decoration:none;transition:color .2s;}
+.f-links a:hover{color:var(--gold);}
+.footer-bottom{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;}
+.f-copy{font-size:.7rem;color:rgba(255,255,255,.2);}
+.f-copy span{color:var(--gold);}
+
+/* ANIMS */
+@keyframes fadeUp{from{opacity:0;transform:translateY(22px);}to{opacity:1;transform:translateY(0);}}
+@keyframes pulse{0%,100%{opacity:.4;}50%{opacity:1;}}
+.fade-in{opacity:0;transform:translateY(18px);transition:opacity .6s,transform .6s;}
+.fade-in.visible{opacity:1;transform:translateY(0);}
+
+/* RESPONSIVE */
+@media(max-width:1100px){
+  .fleet-grid{grid-template-columns:repeat(2,1fr);}
+  .footer-top{grid-template-columns:1fr 1fr;}
+}
+@media(max-width:900px){
+  .about-grid{grid-template-columns:1fr;gap:36px;}
+  .about-img-accent{display:none;}
+  .about-badge{left:14px;}
+  .srv-grid{grid-template-columns:1fr 1fr;}
+  .rev-grid{grid-template-columns:1fr 1fr;}
+  .contact-grid{grid-template-columns:1fr;}
+  .contact-img{display:none;}
+  .gallery-strip{height:200px;}
+}
+@media(max-width:768px){
+  nav{padding:0 4%;}
+  .nav-links,.nav-cta{display:none;}
+  .hamburger{display:flex;}
+  .hero-stats{gap:16px;padding-bottom:50px;}
+  .stat-item{border-left:none;padding-left:0;padding-right:16px;border-right:1px solid rgba(201,168,76,.2);}
+  .stat-item:last-child{border-right:none;}
+  .srv-grid{grid-template-columns:1fr;}
+  .fleet-grid{grid-template-columns:1fr 1fr;}
+  .rev-grid{grid-template-columns:1fr;}
+  .rating-bar{padding:22px 18px;gap:20px;}
+  .fg{grid-template-columns:1fr;}
+  .form-box{padding:26px 18px;}
+  .footer-top{grid-template-columns:1fr;gap:26px;}
+  .gallery-strip{height:150px;}
+  .trust-bar{gap:16px;padding:14px 4%;justify-content:flex-start;}
+  .section{padding:56px 4%;}
+  .page-header{padding:100px 4% 56px;}
+  .cta-banner{padding:72px 4%;}
+}
+@media(max-width:480px){
+  .fleet-grid{grid-template-columns:1fr;}
+  .hero-btns{flex-direction:column;}
+  .btn-gold,.btn-outline{width:100%;text-align:center;}
+  .about-img-main{height:300px;}
+  .gallery-strip{display:none;}
+  .hero-stats{flex-wrap:wrap;}
+  .stat-item{border:none;padding:0;}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo" onclick="showPage('home')"><div class="logo-mark">✦</div>Premium<span>Car</span></div>
+  <ul class="nav-links">
+    <li><a onclick="showPage('home')" class="active" id="nl-home" data-key="nav_home">Home</a></li>
+    <li><a onclick="showPage('services')" id="nl-services" data-key="nav_services">Services</a></li>
+    <li><a onclick="showPage('fleet')" id="nl-fleet" data-key="nav_fleet">Fleet</a></li>
+    <li><a onclick="showPage('reviews')" id="nl-reviews" data-key="nav_reviews">Reviews</a></li>
+    <li><a onclick="showPage('contact')" id="nl-contact" data-key="nav_contact">Contact</a></li>
+  </ul>
+  <div class="nav-right">
+    <div class="lang-toggle">
+      <button class="lang-btn active" onclick="setLang('en')">EN</button>
+      <button class="lang-btn" onclick="setLang('gr')">ΕΛ</button>
+    </div>
+    <button class="nav-cta" onclick="showPage('contact')" data-key="nav_book">Book Now</button>
+    <button class="hamburger" onclick="toggleNav()"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<div class="mobile-nav" id="mobileNav">
+  <a onclick="showPage('home');toggleNav()" data-key="nav_home">Home</a>
+  <a onclick="showPage('services');toggleNav()" data-key="nav_services">Services</a>
+  <a onclick="showPage('fleet');toggleNav()" data-key="nav_fleet">Fleet</a>
+  <a onclick="showPage('reviews');toggleNav()" data-key="nav_reviews">Reviews</a>
+  <a onclick="showPage('contact');toggleNav()" data-key="nav_contact">Contact</a>
+  <div class="mobile-lang">
+    <button onclick="setLang('en');toggleNav()" id="ml-en" class="active">EN</button>
+    <button onclick="setLang('gr');toggleNav()" id="ml-gr">ΕΛ</button>
+  </div>
+</div>
+
+<!-- ═══ HOME ═══ -->
+<div id="page-home" class="page active">
+  <section class="hero">
+    <div class="hero-bg"></div><div class="hero-ov"></div>
+    <div class="hero-content">
+      <div class="hero-eyebrow"><div class="hero-ew-line"></div><span data-key="h_ey">Athens, Greece — Premium Car Rental</span></div>
+      <h1 class="hero-title"><span data-key="h_t1">Drive with</span><br><em data-key="h_t2">Confidence.</em></h1>
+      <p class="hero-sub" data-key="h_sub">Reliable vehicles, competitive pricing, and personal service — in the heart of Athens. Your journey, our commitment.</p>
+      <div class="hero-btns">
+        <button class="btn-gold" onclick="showPage('fleet')" data-key="h_c1">Explore Fleet</button>
+        <button class="btn-outline" onclick="showPage('contact')" data-key="h_c2">Get a Quote</button>
+      </div>
+      <div class="hero-stats">
+        <div class="stat-item"><div class="stat-num">4.4</div><div class="stat-label" data-key="s_1">Google Rating</div></div>
+        <div class="stat-item"><div class="stat-num">32+</div><div class="stat-label" data-key="s_2">Reviews</div></div>
+        <div class="stat-item"><div class="stat-num">€200</div><div class="stat-label" data-key="s_3">Min. Deposit</div></div>
+        <div class="stat-item"><div class="stat-num">10+</div><div class="stat-label" data-key="s_4">Years Experience</div></div>
+      </div>
+    </div>
+    <div class="hero-scroll" onclick="document.getElementById('trust').scrollIntoView({behavior:'smooth'})">
+      <span data-key="scroll">Scroll</span><div class="scroll-bar"></div>
+    </div>
+  </section>
+
+  <div class="trust-bar" id="trust">
+    <div class="trust-item"><span>🚗</span><span data-key="tr1">Well-Maintained Fleet</span></div>
+    <div class="trust-item"><span>🛡️</span><span data-key="tr2">Safe Delivery</span></div>
+    <div class="trust-item"><span>💬</span><span data-key="tr3">Immediate Response</span></div>
+    <div class="trust-item"><span>💰</span><span data-key="tr4">Competitive Pricing</span></div>
+    <div class="trust-item"><span>⚙️</span><span data-key="tr5">Automatic Available</span></div>
+  </div>
+
+  <section class="section sec-light">
+    <div class="about-grid">
+      <div class="about-imgs">
+        <img class="about-img-main" src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=900&q=85" alt="Premium car" loading="lazy">
+        <img class="about-img-accent" src="https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=600&q=85" alt="Greece road" loading="lazy">
+        <div class="about-badge"><div class="about-badge-num">10+</div><div class="about-badge-lbl" data-key="ab_bl">Years Experience</div></div>
+      </div>
+      <div class="about-text">
+        <div class="eyebrow" style="justify-content:flex-start"><div class="ew-line ew-g"></div><span class="ew-txt ew-gold" data-key="ab_tag">About Us</span></div>
+        <h2 class="sec-title dark"><span data-key="ab_t1">Your trusted</span> <em data-key="ab_t2">partner</em><br><span data-key="ab_t3">on every road.</span></h2>
+        <p class="about-body" data-key="ab_b1">We are a locally-owned car rental agency in Athens, committed to well-maintained vehicles, competitive pricing, and personal service that big chains can't match.</p>
+        <p class="about-body" data-key="ab_b2">Whether you need a compact for city driving, an automatic for comfort, or a larger vehicle — we find the right car for you, every time.</p>
+        <ul class="check-list">
+          <li data-key="l1">Flexible rental periods — daily, weekly, monthly</li>
+          <li data-key="l2">Automatic & manual vehicles available on request</li>
+          <li data-key="l3">Pick-up and drop-off arrangements</li>
+          <li data-key="l4">No hidden fees — transparent contracts</li>
+          <li data-key="l5">Loyal returning customers year after year</li>
+        </ul>
+        <button class="btn-gold" onclick="showPage('contact')" data-key="ab_cta">Contact Us</button>
+      </div>
+    </div>
+  </section>
+
+  <div class="gallery-strip">
+    <img src="https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=600&q=80" alt="" loading="lazy">
+    <img src="https://images.unsplash.com/photo-1542362567-b07e54358753?w=600&q=80" alt="" loading="lazy">
+    <img src="https://images.unsplash.com/photo-1494976388531-d1058494cdd8?w=600&q=80" alt="" loading="lazy">
+    <img src="https://images.unsplash.com/photo-1580273916550-e323be2ae537?w=600&q=80" alt="" loading="lazy">
+    <img src="https://images.unsplash.com/photo-1605559424843-9e4c228bf1c2?w=600&q=80" alt="" loading="lazy">
+  </div>
+
+  <section class="section sec-dark">
+    <div class="sec-head">
+      <div class="eyebrow" style="justify-content:center"><div class="ew-line ew-g"></div><span class="ew-txt ew-gold" data-key="srv_tag">What We Offer</span><div class="ew-line ew-g"></div></div>
+      <h2 class="sec-title light" data-key="srv_title">Built around <em>your needs.</em></h2>
+      <p class="sec-sub" style="color:rgba(255,255,255,.38)" data-key="srv_sub">From single-day rentals to multi-week agreements — we cover it all.</p>
+    </div>
+    <div class="srv-grid">
+      <div class="srv-card"><img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=700&q=80" alt="City rentals" loading="lazy"><div class="srv-ov"><div class="srv-num">01</div><div class="srv-line"></div><div class="srv-title" data-key="s1t">City Rentals</div><div class="srv-desc" data-key="s1d">Compact vehicles perfect for Athens. Daily & weekly rates.</div></div></div>
+      <div class="srv-card"><img src="https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?w=700&q=80" alt="Long distance" loading="lazy"><div class="srv-ov"><div class="srv-num">02</div><div class="srv-line"></div><div class="srv-title" data-key="s2t">Long Distance</div><div class="srv-desc" data-key="s2d">Reliable vehicles for trips across Greece. Fully serviced.</div></div></div>
+      <div class="srv-card"><img src="https://images.unsplash.com/photo-1502877338535-766e1452684a?w=700&q=80" alt="Automatic" loading="lazy"><div class="srv-ov"><div class="srv-num">03</div><div class="srv-line"></div><div class="srv-title" data-key="s3t">Automatic Vehicles</div><div class="srv-desc" data-key="s3d">Specializing in automatic cars on request — your comfort first.</div></div></div>
+      <div class="srv-card"><img src="https://images.unsplash.com/photo-1506543730435-e2c1d4553a84?w=700&q=80" alt="Seasonal" loading="lazy"><div class="srv-ov"><div class="srv-num">04</div><div class="srv-line"></div><div class="srv-title" data-key="s4t">Seasonal Rentals</div><div class="srv-desc" data-key="s4d">Clients return every summer. Ready for every season.</div></div></div>
+      <div class="srv-card"><img src="https://images.unsplash.com/photo-1521791055366-0d553872952f?w=700&q=80" alt="Personal service" loading="lazy"><div class="srv-ov"><div class="srv-num">05</div><div class="srv-line"></div><div class="srv-title" data-key="s5t">Personal Service</div><div class="srv-desc" data-key="s5d">Direct contact with owners. No call centers. Real people.</div></div></div>
+      <div class="srv-card"><img src="https://images.unsplash.com/photo-1464219789935-c2d9d9aba644?w=700&q=80" alt="Flexible pickup" loading="lazy"><div class="srv-ov"><div class="srv-num">06</div><div class="srv-line"></div><div class="srv-title" data-key="s6t">Flexible Pickup</div><div class="srv-desc" data-key="s6d">Based in Kallithea. Delivery & schedule on enquiry.</div></div></div>
+    </div>
+  </section>
+
+  <div class="cta-banner">
+    <div class="cta-banner-img"></div><div class="cta-banner-ov"></div>
+    <div class="cta-banner-c">
+      <h2><span data-key="cta_t1">Ready to hit </span><em data-key="cta_t2">the road?</em></h2>
+      <p data-key="cta_s">Contact us and we'll find the perfect vehicle for your trip.</p>
+      <button class="btn-gold" onclick="showPage('contact')" data-key="cta_btn">Make an Enquiry</button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ SERVICES ═══ -->
+<div id="page-services" class="page">
+  <div class="page-header">
+    <img class="ph-img" src="https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?w=1600&q=85" alt="Services" loading="lazy">
+    <div class="ph-ov"></div>
+    <div class="ph-c">
+      <div class="eyebrow" style="justify-content:center"><div class="ew-line ew-g"></div><span class="ew-txt ew-gold" data-key="srv_tag">Services</span><div class="ew-line ew-g"></div></div>
+      <h1 class="sec-title light" style="font-size:clamp(2.3rem,5vw,4.3rem);" data-key="srv_page_h">Everything you <em>need.</em></h1>
+    </div>
+  </div>
+  <section class="section sec-dark" style="padding-top:48px;">
+    <div class="srv-grid">
+      <div class="srv-card"><img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=700&q=80" alt="" loading="lazy"><div class="srv-ov"><div class="srv-num">01</div><div class="srv-line"></div><div class="srv-title" data-key="s1t">City Rentals</div><div class="srv-desc" data-key="s1d">Compact vehicles perfect for Athens. Daily & weekly rates.</div></div></div>
+      <div class="srv-card"><img src="https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?w=700&q=80" alt="" loading="lazy"><div class="srv-ov"><div class="srv-num">02</div><div class="srv-line"></div><div class="srv-title" data-key="s2t">Long Distance</div><div class="srv-desc" data-key="s2d">Reliable vehicles for trips across Greece. Fully serviced.</div></div></div>
+      <div class="srv-card"><img src="https://images.unsplash.com/photo-1502877338535-766e1452684a?w=700&q=80" alt="" loading="lazy"><div class="srv-ov"><div class="srv-num">03</div><div class="srv-line"></div><div class="srv-title" data-key="s3t">Automatic Vehicles</div><div class="srv-desc" data-key="s3d">Specializing in automatic cars on request — your comfort first.</div></div></div>
+      <div class="srv-card"><img src="https://images.unsplash.com/photo-1506543730435-e2c1d4553a84?w=700&q=80" alt="" loading="lazy"><div class="srv-ov"><div class="srv-num">04</div><div class="srv-line"></div><div class="srv-title" data-key="s4t">Seasonal Rentals</div><div class="srv-desc" data-key="s4d">Clients return every summer. Ready for every season.</div></div></div>
+      <div class="srv-card"><img src="https://images.unsplash.com/photo-1521791055366-0d553872952f?w=700&q=80" alt="" loading="lazy"><div class="srv-ov"><div class="srv-num">05</div><div class="srv-line"></div><div class="srv-title" data-key="s5t">Personal Service</div><div class="srv-desc" data-key="s5d">Direct contact with owners. No call centers. Real people.</div></div></div>
+      <div class="srv-card"><img src="https://images.unsplash.com/photo-1464219789935-c2d9d9aba644?w=700&q=80" alt="" loading="lazy"><div class="srv-ov"><div class="srv-num">06</div><div class="srv-line"></div><div class="srv-title" data-key="s6t">Flexible Pickup</div><div class="srv-desc" data-key="s6d">Based in Kallithea. Delivery & schedule on enquiry.</div></div></div>
+    </div>
+  </section>
+  <section class="section sec-white">
+    <div class="sec-head">
+      <div class="eyebrow" style="justify-content:center"><div class="ew-line ew-g"></div><span class="ew-txt ew-gold" data-key="why_tag">Why Choose Us</span><div class="ew-line ew-g"></div></div>
+      <h2 class="sec-title dark" data-key="why_title">The <em>difference</em> you feel.</h2>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:20px;max-width:880px;margin:0 auto;">
+      <div style="overflow:hidden;border:1px solid var(--light);" class="fade-in"><img src="https://images.unsplash.com/photo-1580273916550-e323be2ae537?w=600&q=80" alt="" loading="lazy" style="height:170px;object-fit:cover;width:100%;"><div style="padding:22px 26px;"><h4 style="font-family:'Cormorant Garamond',serif;font-size:1.25rem;color:var(--navy);margin-bottom:7px;" data-key="w1t">Immaculate Vehicles</h4><p style="font-size:.83rem;color:var(--gray);line-height:1.7;" data-key="w1d">Every car delivered clean, serviced, in excellent condition.</p></div></div>
+      <div style="overflow:hidden;border:1px solid var(--light);" class="fade-in"><img src="https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?w=600&q=80" alt="" loading="lazy" style="height:170px;object-fit:cover;width:100%;"><div style="padding:22px 26px;"><h4 style="font-family:'Cormorant Garamond',serif;font-size:1.25rem;color:var(--navy);margin-bottom:7px;" data-key="w2t">Transparent Pricing</h4><p style="font-size:.83rem;color:var(--gray);line-height:1.7;" data-key="w2d">No hidden charges. What you see is what you pay. €200 deposit.</p></div></div>
+      <div style="overflow:hidden;border:1px solid var(--light);" class="fade-in"><img src="https://images.unsplash.com/photo-1521791055366-0d553872952f?w=600&q=80" alt="" loading="lazy" style="height:170px;object-fit:cover;width:100%;"><div style="padding:22px 26px;"><h4 style="font-family:'Cormorant Garamond',serif;font-size:1.25rem;color:var(--navy);margin-bottom:7px;" data-key="w3t">Immediate Response</h4><p style="font-size:.83rem;color:var(--gray);line-height:1.7;" data-key="w3d">Fast, clear communication throughout your rental.</p></div></div>
+      <div style="overflow:hidden;border:1px solid var(--light);" class="fade-in"><img src="https://images.unsplash.com/photo-1464219789935-c2d9d9aba644?w=600&q=80" alt="" loading="lazy" style="height:170px;object-fit:cover;width:100%;"><div style="padding:22px 26px;"><h4 style="font-family:'Cormorant Garamond',serif;font-size:1.25rem;color:var(--navy);margin-bottom:7px;" data-key="w4t">Returning Clients</h4><p style="font-size:.83rem;color:var(--gray);line-height:1.7;" data-key="w4d">Many clients return every year — the best proof of quality.</p></div></div>
+    </div>
+  </section>
+</div>
+
+<!-- ═══ FLEET ═══ -->
+<div id="page-fleet" class="page">
+  <div class="page-header">
+    <img class="ph-img" src="https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=1600&q=85" alt="Fleet" loading="lazy">
+    <div class="ph-ov"></div>
+    <div class="ph-c">
+      <div class="eyebrow" style="justify-content:center"><div class="ew-line ew-g"></div><span class="ew-txt ew-gold" data-key="fl_tag">Our Fleet</span><div class="ew-line ew-g"></div></div>
+      <h1 class="sec-title light" style="font-size:clamp(2.3rem,5vw,4.3rem);" data-key="fl_title">The right car <em>for you.</em></h1>
+      <p style="color:rgba(255,255,255,.42);font-size:.92rem;margin-top:12px;" data-key="fl_sub">Well-maintained, regularly serviced vehicles across all categories.</p>
+    </div>
+  </div>
+  <section class="section sec-light">
+    <div class="fleet-grid">
+      <div class="fleet-card fade-in"><div class="fleet-img-wrap"><img src="https://images.unsplash.com/photo-1541899481282-d53bffe3c35d?w=600&q=80" alt="Economy car" loading="lazy"><div class="fleet-badge" data-key="fb1">Economy</div></div><div class="fleet-body"><div class="fleet-cat" data-key="fc1">City Compact</div><div class="fleet-name" data-key="fn1">Economy Class</div><div class="fleet-specs"><span class="spec" data-key="sp_m">Manual</span><span class="spec" data-key="sp_5">5 Seats</span><span class="spec">A/C</span></div><button class="fleet-btn" onclick="showPage('contact')" data-key="fl_enq">Enquire Now</button></div></div>
+      <div class="fleet-card fade-in"><div class="fleet-img-wrap"><img src="https://images.unsplash.com/photo-1555215695-3004980ad54e?w=600&q=80" alt="Sedan" loading="lazy"><div class="fleet-badge" data-key="fb2">Comfort</div></div><div class="fleet-body"><div class="fleet-cat" data-key="fc2">Sedan</div><div class="fleet-name" data-key="fn2">Comfort Sedan</div><div class="fleet-specs"><span class="spec" data-key="sp_a">Automatic</span><span class="spec" data-key="sp_5">5 Seats</span><span class="spec">A/C</span></div><button class="fleet-btn" onclick="showPage('contact')" data-key="fl_enq">Enquire Now</button></div></div>
+      <div class="fleet-card fade-in"><div class="fleet-img-wrap"><img src="https://images.unsplash.com/photo-1519641471654-76ce0107ad1b?w=600&q=80" alt="Family car" loading="lazy"><div class="fleet-badge" data-key="fb3">Family</div></div><div class="fleet-body"><div class="fleet-cat" data-key="fc3">MPV / Van</div><div class="fleet-name" data-key="fn3">Family MPV</div><div class="fleet-specs"><span class="spec" data-key="sp_m">Manual</span><span class="spec" data-key="sp_7">7 Seats</span><span class="spec">A/C</span></div><button class="fleet-btn" onclick="showPage('contact')" data-key="fl_enq">Enquire Now</button></div></div>
+      <div class="fleet-card fade-in"><div class="fleet-img-wrap"><img src="https://images.unsplash.com/photo-1502877338535-766e1452684a?w=600&q=80" alt="Automatic car" loading="lazy"><div class="fleet-badge" data-key="fb4">Automatic</div></div><div class="fleet-body"><div class="fleet-cat" data-key="fc4">On Request</div><div class="fleet-name" data-key="fn4">Auto Select</div><div class="fleet-specs"><span class="spec" data-key="sp_a">Automatic</span><span class="spec" data-key="sp_5">5 Seats</span><span class="spec">A/C</span></div><button class="fleet-btn" onclick="showPage('contact')" data-key="fl_enq">Enquire Now</button></div></div>
+    </div>
+    <div style="text-align:center;margin-top:44px;"><p style="color:var(--gray);font-size:.86rem;margin-bottom:18px;" data-key="fl_note">Looking for something specific? We'll do our best to find it.</p><button class="btn-gold" onclick="showPage('contact')" data-key="fl_req">Request a Vehicle</button></div>
+  </section>
+  <div class="gallery-strip">
+    <img src="https://images.unsplash.com/photo-1494976388531-d1058494cdd8?w=600&q=80" alt="" loading="lazy">
+    <img src="https://images.unsplash.com/photo-1542362567-b07e54358753?w=600&q=80" alt="" loading="lazy">
+    <img src="https://images.unsplash.com/photo-1605559424843-9e4c228bf1c2?w=600&q=80" alt="" loading="lazy">
+    <img src="https://images.unsplash.com/photo-1580273916550-e323be2ae537?w=600&q=80" alt="" loading="lazy">
+  </div>
+</div>
+
+<!-- ═══ REVIEWS ═══ -->
+<div id="page-reviews" class="page">
+  <div class="page-header">
+    <img class="ph-img" src="https://images.unsplash.com/photo-1464219789935-c2d9d9aba644?w=1600&q=85" alt="Reviews" loading="lazy">
+    <div class="ph-ov"></div>
+    <div class="ph-c">
+      <div class="eyebrow" style="justify-content:center"><div class="ew-line ew-g"></div><span class="ew-txt ew-gold" data-key="rv_tag">Reviews</span><div class="ew-line ew-g"></div></div>
+      <h1 class="sec-title light" style="font-size:clamp(2.3rem,5vw,4.3rem);" data-key="rv_title">What our <em>clients say.</em></h1>
+    </div>
+  </div>
+  <section class="section sec-dark" style="padding-top:56px;">
+    <div class="reviews-wrap">
+      <div class="rating-bar">
+        <div><div class="rating-score">4.4</div><div class="rating-stars">★★★★☆</div><div class="rating-ct" data-key="rv_ct">Based on 32 Google reviews</div></div>
+        <div class="bar-wrap">
+          <div class="bar-row"><div class="bar-lbl">5</div><div class="bar-track"><div class="bar-fill" style="width:65%"></div></div></div>
+          <div class="bar-row"><div class="bar-lbl">4</div><div class="bar-track"><div class="bar-fill" style="width:20%"></div></div></div>
+          <div class="bar-row"><div class="bar-lbl">3</div><div class="bar-track"><div class="bar-fill" style="width:5%"></div></div></div>
+          <div class="bar-row"><div class="bar-lbl">2</div><div class="bar-track"><div class="bar-fill" style="width:0%"></div></div></div>
+          <div class="bar-row"><div class="bar-lbl">1</div><div class="bar-track"><div class="bar-fill" style="width:10%"></div></div></div>
+        </div>
+        <div style="color:rgba(255,255,255,.4);font-size:.78rem;line-height:1.7;max-width:200px;" data-key="rv_note">Reviews sourced from Google Maps. Verified by real customers.</div>
+      </div>
+      <div class="rev-grid">
+        <div class="rev-card fade-in"><div class="rev-stars">★★★★★</div><p class="rev-text" data-key="r1">"The staff was prompt and gracious in their communication and the car was in excellent condition. We have rented many times and always a positive experience."</p><div class="rev-author"><div class="rev-avatar">M</div><div><div class="rev-name">Marina G.</div><div class="rev-date" data-key="rd1">2 years ago · Google Review</div></div></div></div>
+        <div class="rev-card fade-in"><div class="rev-stars">★★★★★</div><p class="rev-text" data-key="r2">"We have been renting our summer car here for the last three summers! Great company, very well maintained cars — always going out of their way to find us an automatic car."</p><div class="rev-author"><div class="rev-avatar">S</div><div><div class="rev-name">Savvas V.</div><div class="rev-date" data-key="rd2">2 years ago · Google Review</div></div></div></div>
+        <div class="rev-card fade-in"><div class="rev-stars">★★★★★</div><p class="rev-text" data-key="r3">"Great service, prices and cars. It is our go-to place for rentals in Athens!"</p><div class="rev-author"><div class="rev-avatar">O</div><div><div class="rev-name">Omyros G.</div><div class="rev-date" data-key="rd3">2 years ago · Google Review</div></div></div></div>
+        <div class="rev-card fade-in"><div class="rev-stars">★★★★★</div><p class="rev-text" data-key="r4">"Impeccable and prompt service, cars in very good condition and clean! Affordable prices and always polite! Will prefer you again!"</p><div class="rev-author"><div class="rev-avatar">K</div><div><div class="rev-name">Konstantina K.</div><div class="rev-date" data-key="rd4">11 months ago · Google Review</div></div></div></div>
+        <div class="rev-card fade-in"><div class="rev-stars">★★★★★</div><p class="rev-text" data-key="r5">"Excellent car rental company. The owners are friendly and always there for the customer with any problem! Highly recommend!"</p><div class="rev-author"><div class="rev-avatar">G</div><div><div class="rev-name">Giorgos M.</div><div class="rev-date" data-key="rd5">2 years ago · Google Review</div></div></div></div>
+        <div class="rev-card fade-in"><div class="rev-stars">★★★★★</div><p class="rev-text" data-key="r6">"Very good service! Flexibility and immediate response! Safe condition in which they deliver the car — it will definitely be my only choice!"</p><div class="rev-author"><div class="rev-avatar">V</div><div><div class="rev-name">Virna T.</div><div class="rev-date" data-key="rd6">2 years ago · Google Review</div></div></div></div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ═══ CONTACT ═══ -->
+<div id="page-contact" class="page">
+  <div class="page-header">
+    <img class="ph-img" src="https://images.unsplash.com/photo-1521791055366-0d553872952f?w=1600&q=85" alt="Contact" loading="lazy">
+    <div class="ph-ov"></div>
+    <div class="ph-c">
+      <div class="eyebrow" style="justify-content:center"><div class="ew-line ew-g"></div><span class="ew-txt ew-gold" data-key="ct_tag">Contact</span><div class="ew-line ew-g"></div></div>
+      <h1 class="sec-title light" style="font-size:clamp(2.3rem,5vw,4.3rem);" data-key="ct_title">Let's find your <em>ideal car.</em></h1>
+    </div>
+  </div>
+  <section class="section sec-light" style="padding-top:72px;">
+    <div class="contact-grid">
+      <div class="contact-img">
+        <img src="https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=800&q=85" alt="Greece road" loading="lazy">
+        <div class="contact-img-badge"><p style="font-family:'Cormorant Garamond',serif;font-size:1.45rem;color:var(--white);font-weight:400;line-height:1.4;" data-key="ct_q">"Your journey starts with the right car."</p><div style="width:28px;height:2px;background:var(--gold);margin-top:12px;"></div></div>
+      </div>
+      <div>
+        <div class="c-items" style="margin-bottom:28px;">
+          <div class="c-item"><div class="c-icon">📧</div><div><div class="c-label" data-key="ct_el">Email</div><div class="c-val"><a href="mailto:info@kapsiscarrental.gr">info@kapsiscarrental.gr</a></div></div></div>
+          <div class="c-item"><div class="c-icon">📍</div><div><div class="c-label" data-key="ct_ll">Location</div><div class="c-val" data-key="ct_lv">Kallithea, Athens, Greece</div></div></div>
+          <div class="c-item"><div class="c-icon">🕐</div><div><div class="c-label" data-key="ct_rl">Response Time</div><div class="c-val" data-key="ct_rv">Usually within a few hours</div></div></div>
+          <div class="c-item"><div class="c-icon">💶</div><div><div class="c-label" data-key="ct_dl">Min. Deposit</div><div class="c-val">€200</div></div></div>
+        </div>
+        <div class="form-box">
+          <div class="form-title" data-key="ft">Send an Enquiry</div>
+          <div class="fg">
+            <div class="fgrp"><label class="flabel" data-key="fn_l">Full Name</label><input type="text" class="finput" data-ph="fn_ph"></div>
+            <div class="fgrp"><label class="flabel" data-key="fe_l">Email</label><input type="email" class="finput" data-ph="fe_ph"></div>
+            <div class="fgrp"><label class="flabel" data-key="fpk_l">Pickup Date</label><input type="date" class="finput"></div>
+            <div class="fgrp"><label class="flabel" data-key="frt_l">Return Date</label><input type="date" class="finput"></div>
+            <div class="fgrp fg-full"><label class="flabel" data-key="fvt_l">Vehicle Type</label><select class="fselect"><option data-key="fo1">Economy / Compact</option><option data-key="fo2">Automatic</option><option data-key="fo3">Sedan / Comfort</option><option data-key="fo4">Family / MPV</option><option data-key="fo5">No preference</option></select></div>
+            <div class="fgrp fg-full"><label class="flabel" data-key="fm_l">Message</label><textarea class="ftextarea" data-ph="fm_ph"></textarea></div>
+          </div>
+          <button class="fsubmit" onclick="handleSubmit(this)" data-key="fsub">Send Enquiry</button>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div><div class="f-logo">Premium<span>Car</span></div><p class="f-desc" data-key="fd">Professional car rental in Athens. Reliable vehicles, competitive pricing, personal service on every rental.</p></div>
+    <div><div class="f-col-title" data-key="f_p">Pages</div><ul class="f-links"><li><a onclick="showPage('home')" data-key="nav_home">Home</a></li><li><a onclick="showPage('services')" data-key="nav_services">Services</a></li><li><a onclick="showPage('fleet')" data-key="nav_fleet">Fleet</a></li><li><a onclick="showPage('reviews')" data-key="nav_reviews">Reviews</a></li><li><a onclick="showPage('contact')" data-key="nav_contact">Contact</a></li></ul></div>
+    <div><div class="f-col-title" data-key="f_s">Services</div><ul class="f-links"><li><a data-key="s1t">City Rentals</a></li><li><a data-key="s2t">Long Distance</a></li><li><a data-key="s3t">Automatic Vehicles</a></li><li><a data-key="s4t">Seasonal Rentals</a></li></ul></div>
+    <div><div class="f-col-title" data-key="f_c">Contact</div><ul class="f-links"><li><a href="mailto:info@kapsiscarrental.gr">info@kapsiscarrental.gr</a></li><li><a data-key="ct_lv">Kallithea, Athens</a></li><li><a>Greece</a></li></ul></div>
+  </div>
+  <div class="footer-bottom"><div class="f-copy">© 2025 Premium<span>Car</span>. <span data-key="f_r">All rights reserved.</span></div><div class="f-copy" data-key="f_loc">Kallithea · Athens · Greece</div></div>
+</footer>
+
+<script>
+const T={
+en:{nav_home:"Home",nav_services:"Services",nav_fleet:"Fleet",nav_reviews:"Reviews",nav_contact:"Contact",nav_book:"Book Now",h_ey:"Athens, Greece — Premium Car Rental",h_t1:"Drive with",h_t2:"Confidence.",h_sub:"Reliable vehicles, competitive pricing, and personal service — in the heart of Athens. Your journey, our commitment.",h_c1:"Explore Fleet",h_c2:"Get a Quote",s_1:"Google Rating",s_2:"Reviews",s_3:"Min. Deposit",s_4:"Years Experience",scroll:"Scroll",tr1:"Well-Maintained Fleet",tr2:"Safe Delivery",tr3:"Immediate Response",tr4:"Competitive Pricing",tr5:"Automatic Available",ab_bl:"Years Experience",ab_tag:"About Us",ab_t1:"Your trusted",ab_t2:"partner",ab_t3:"on every road.",ab_b1:"We are a locally-owned car rental agency in Athens, committed to well-maintained vehicles, competitive pricing, and personal service that big chains can't match.",ab_b2:"Whether you need a compact for city driving, an automatic for comfort, or a larger vehicle — we find the right car for you, every time.",l1:"Flexible rental periods — daily, weekly, monthly",l2:"Automatic & manual vehicles available on request",l3:"Pick-up and drop-off arrangements",l4:"No hidden fees — transparent contracts",l5:"Loyal returning customers year after year",ab_cta:"Contact Us",srv_tag:"What We Offer",srv_title:"Built around your needs.",srv_sub:"From single-day rentals to multi-week agreements — we cover it all.",s1t:"City Rentals",s1d:"Compact vehicles perfect for Athens. Daily & weekly rates.",s2t:"Long Distance",s2d:"Reliable vehicles for trips across Greece. Fully serviced.",s3t:"Automatic Vehicles",s3d:"Specializing in automatic cars on request — your comfort first.",s4t:"Seasonal Rentals",s4d:"Clients return every summer. Ready for every season.",s5t:"Personal Service",s5d:"Direct contact with owners. No call centers. Real people.",s6t:"Flexible Pickup",s6d:"Based in Kallithea. Delivery & schedule on enquiry.",cta_t1:"Ready to hit ",cta_t2:"the road?",cta_s:"Contact us and we'll find the perfect vehicle for your trip.",cta_btn:"Make an Enquiry",srv_page_h:"Everything you need.",why_tag:"Why Choose Us",why_title:"The difference you feel.",w1t:"Immaculate Vehicles",w1d:"Every car delivered clean, serviced, in excellent condition.",w2t:"Transparent Pricing",w2d:"No hidden charges. What you see is what you pay. €200 deposit.",w3t:"Immediate Response",w3d:"Fast, clear communication throughout your rental.",w4t:"Returning Clients",w4d:"Many clients return every year — the best proof of quality.",fl_tag:"Our Fleet",fl_title:"The right car for you.",fl_sub:"Well-maintained, regularly serviced vehicles across all categories.",fb1:"Economy",fb2:"Comfort",fb3:"Family",fb4:"Automatic",fc1:"City Compact",fc2:"Sedan",fc3:"MPV / Van",fc4:"On Request",fn1:"Economy Class",fn2:"Comfort Sedan",fn3:"Family MPV",fn4:"Auto Select",sp_m:"Manual",sp_a:"Automatic",sp_5:"5 Seats",sp_7:"7 Seats",fl_enq:"Enquire Now",fl_note:"Looking for something specific? We'll do our best to find it.",fl_req:"Request a Vehicle",rv_tag:"Reviews",rv_title:"What our clients say.",rv_ct:"Based on 32 Google reviews",rv_note:"Reviews sourced from Google Maps. Verified by real customers.",r1:'"The staff was prompt and gracious in their communication and the car was in excellent condition. We have rented many times and always a positive experience."',r2:'"We have been renting our summer car here for the last three summers! Great company, very well maintained cars — always going out of their way to find us an automatic car."',r3:'"Great service, prices and cars. It is our go-to place for rentals in Athens!"',r4:'"Impeccable and prompt service, cars in very good condition and clean! Affordable prices and always polite! Will prefer you again!"',r5:'"Excellent car rental company. The owners are friendly and always there for the customer. Highly recommend!"',r6:'"Very good service! Flexibility and immediate response! Safe condition in which they deliver the car — it will definitely be my only choice!"',rd1:"2 years ago · Google Review",rd2:"2 years ago · Google Review",rd3:"2 years ago · Google Review",rd4:"11 months ago · Google Review",rd5:"2 years ago · Google Review",rd6:"2 years ago · Google Review",ct_tag:"Contact",ct_title:"Let's find your ideal car.",ct_q:'"Your journey starts with the right car."',ct_el:"Email",ct_ll:"Location",ct_lv:"Kallithea, Athens, Greece",ct_rl:"Response Time",ct_rv:"Usually within a few hours",ct_dl:"Min. Deposit",ft:"Send an Enquiry",fn_l:"Full Name",fe_l:"Email",fpk_l:"Pickup Date",frt_l:"Return Date",fvt_l:"Vehicle Type",fm_l:"Message",fn_ph:"Your full name",fe_ph:"your@email.com",fm_ph:"Tell us your dates, vehicle preference, and any questions...",fo1:"Economy / Compact",fo2:"Automatic",fo3:"Sedan / Comfort",fo4:"Family / MPV",fo5:"No preference",fsub:"Send Enquiry",fd:"Professional car rental in Athens. Reliable vehicles, competitive pricing, personal service on every rental.",f_p:"Pages",f_s:"Services",f_c:"Contact",f_r:"All rights reserved.",f_loc:"Kallithea · Athens · Greece"},
+gr:{nav_home:"Αρχική",nav_services:"Υπηρεσίες",nav_fleet:"Στόλος",nav_reviews:"Κριτικές",nav_contact:"Επικοινωνία",nav_book:"Κράτηση",h_ey:"Αθήνα, Ελλάδα — Premium Ενοικίαση Αυτοκινήτων",h_t1:"Οδηγήστε με",h_t2:"Εμπιστοσύνη.",h_sub:"Αξιόπιστα οχήματα, ανταγωνιστικές τιμές και προσωπική εξυπηρέτηση — στην καρδιά της Αθήνας.",h_c1:"Δείτε τον Στόλο",h_c2:"Ζητήστε Προσφορά",s_1:"Βαθμολογία Google",s_2:"Κριτικές",s_3:"Ελάχ. Προκαταβολή",s_4:"Χρόνια Εμπειρίας",scroll:"Κύλιση",tr1:"Συντηρημένος Στόλος",tr2:"Ασφαλής Παράδοση",tr3:"Άμεση Ανταπόκριση",tr4:"Ανταγωνιστικές Τιμές",tr5:"Αυτόματα Διαθέσιμα",ab_bl:"Χρόνια Εμπειρίας",ab_tag:"Σχετικά με εμάς",ab_t1:"Ο αξιόπιστος",ab_t2:"συνεργάτης",ab_t3:"σας σε κάθε δρόμο.",ab_b1:"Είμαστε τοπική εταιρεία ενοικίασης αυτοκινήτων στην Αθήνα, αφιερωμένη σε καλοσυντηρημένα οχήματα, ανταγωνιστικές τιμές και προσωπική εξυπηρέτηση.",ab_b2:"Είτε χρειάζεστε compact για την πόλη, αυτόματο για άνεση ή μεγαλύτερο όχημα — βρίσκουμε το σωστό αυτοκίνητο για εσάς.",l1:"Ευέλικτες περίοδοι ενοικίασης — ημέρα, εβδομάδα, μήνας",l2:"Αυτόματα και χειροκίνητα κατόπιν αιτήματος",l3:"Υπηρεσία παραλαβής και παράδοσης",l4:"Χωρίς κρυφές χρεώσεις — διαφανείς συμβάσεις",l5:"Επαναλαμβανόμενοι πελάτες χρόνο με τον χρόνο",ab_cta:"Επικοινωνήστε",srv_tag:"Τι Προσφέρουμε",srv_title:"Φτιαγμένο για τις ανάγκες σας.",srv_sub:"Από ημερήσιες ενοικιάσεις έως μακροπρόθεσμες συμφωνίες.",s1t:"Ενοικιάσεις Πόλης",s1d:"Compact οχήματα ιδανικά για Αθήνα. Ημερήσιες & εβδομαδιαίες τιμές.",s2t:"Μεγάλες Αποστάσεις",s2d:"Αξιόπιστα οχήματα για ταξίδια σε όλη την Ελλάδα.",s3t:"Αυτόματα Οχήματα",s3d:"Εξειδικευόμαστε σε αυτόματα κατόπιν αιτήματος.",s4t:"Εποχιακές Ενοικιάσεις",s4d:"Πελάτες επιστρέφουν κάθε καλοκαίρι.",s5t:"Προσωπική Εξυπηρέτηση",s5d:"Άμεση επικοινωνία με ιδιοκτήτες. Χωρίς call centers.",s6t:"Ευέλικτη Παραλαβή",s6d:"Καλλιθέα. Συζητήστε ρυθμίσεις παράδοσης.",cta_t1:"Έτοιμοι για ",cta_t2:"τον δρόμο;",cta_s:"Επικοινωνήστε και ας βρούμε το ιδανικό όχημα.",cta_btn:"Κάντε Ερώτηση",srv_page_h:"Ό,τι χρειάζεστε.",why_tag:"Γιατί Εμείς",why_title:"Η διαφορά που αισθάνεστε.",w1t:"Άψογα Οχήματα",w1d:"Κάθε αυτοκίνητο παραδίδεται καθαρό, συντηρημένο και σε άριστη κατάσταση.",w2t:"Διαφανείς Τιμές",w2d:"Χωρίς κρυφές χρεώσεις. Ελάχιστη εγγύηση €200.",w3t:"Άμεση Ανταπόκριση",w3d:"Γρήγορη επικοινωνία καθ' όλη τη διάρκεια.",w4t:"Επιστρέφοντες Πελάτες",w4d:"Πολλοί πελάτες επιστρέφουν κάθε χρόνο.",fl_tag:"Ο Στόλος Μας",fl_title:"Το σωστό αυτοκίνητο για εσάς.",fl_sub:"Καλοσυντηρημένα οχήματα σε όλες τις κατηγορίες.",fb1:"Οικονομικό",fb2:"Άνεση",fb3:"Οικογένεια",fb4:"Αυτόματο",fc1:"Compact Πόλης",fc2:"Sedan",fc3:"MPV / Van",fc4:"Κατόπιν Αιτήματος",fn1:"Οικονομική Κλάση",fn2:"Άνετο Sedan",fn3:"Οικογενειακό MPV",fn4:"Αυτόματη Επιλογή",sp_m:"Χειροκίνητο",sp_a:"Αυτόματο",sp_5:"5 Θέσεις",sp_7:"7 Θέσεις",fl_enq:"Ζητήστε Πληροφορίες",fl_note:"Ψάχνετε κάτι συγκεκριμένο; Θα κάνουμε ό,τι μπορούμε.",fl_req:"Ζητήστε Όχημα",rv_tag:"Κριτικές",rv_title:"Τι λένε οι πελάτες μας.",rv_ct:"Βάσει 32 κριτικών Google",rv_note:"Κριτικές από Google Maps. Επαληθευμένες.",r1:'"Το προσωπικό ήταν άμεσο και ευγενικό και το αυτοκίνητο σε άριστη κατάσταση. Πάντα θετική εμπειρία."',r2:'"Νοικιάζουμε εδώ τα τελευταία τρία καλοκαίρια! Εξαιρετική εταιρεία, πάντα βρίσκουν αυτόματο."',r3:'"Εξαιρετική εξυπηρέτηση, τιμές και αυτοκίνητα. Η go-to επιλογή μας!"',r4:'"Άψογη και άμεση εξυπηρέτηση, αυτοκίνητα σε πολύ καλή κατάσταση! Πάντα ευγενικοί!"',r5:'"Εξαιρετική εταιρεία. Οι ιδιοκτήτες πάντα εκεί για τον πελάτη!"',r6:'"Πολύ καλή εξυπηρέτηση! Ευελιξία και άμεση ανταπόκριση!"',rd1:"Πριν 2 χρόνια · Google Review",rd2:"Πριν 2 χρόνια · Google Review",rd3:"Πριν 2 χρόνια · Google Review",rd4:"Πριν 11 μήνες · Google Review",rd5:"Πριν 2 χρόνια · Google Review",rd6:"Πριν 2 χρόνια · Google Review",ct_tag:"Επικοινωνία",ct_title:"Βρούμε το ιδανικό αυτοκίνητό σας.",ct_q:'"Κάθε ταξίδι αρχίζει με το σωστό αυτοκίνητο."',ct_el:"Email",ct_ll:"Τοποθεσία",ct_lv:"Καλλιθέα, Αθήνα, Ελλάδα",ct_rl:"Χρόνος Απάντησης",ct_rv:"Συνήθως εντός λίγων ωρών",ct_dl:"Ελάχ. Προκαταβολή",ft:"Στείλτε Ερώτηση",fn_l:"Ονοματεπώνυμο",fe_l:"Email",fpk_l:"Ημ. Παραλαβής",frt_l:"Ημ. Επιστροφής",fvt_l:"Τύπος Οχήματος",fm_l:"Μήνυμα",fn_ph:"Το πλήρες όνομά σας",fe_ph:"email@σας.gr",fm_ph:"Ημερομηνίες, προτίμηση οχήματος και ερωτήσεις...",fo1:"Οικονομικό / Compact",fo2:"Αυτόματο",fo3:"Sedan / Άνεση",fo4:"Οικογενειακό / MPV",fo5:"Χωρίς προτίμηση",fsub:"Αποστολή Ερώτησης",fd:"Επαγγελματική ενοικίαση αυτοκινήτων στην Αθήνα.",f_p:"Σελίδες",f_s:"Υπηρεσίες",f_c:"Επικοινωνία",f_r:"Όλα τα δικαιώματα διατηρούνται.",f_loc:"Καλλιθέα · Αθήνα · Ελλάδα"}
+};
+
+let lang='en';
+function setLang(l){
+  lang=l;
+  document.querySelectorAll('.lang-btn').forEach(b=>b.classList.remove('active'));
+  document.querySelectorAll(`button.lang-btn[onclick="setLang('${l}')"]`).forEach(b=>b.classList.add('active'));
+  const me=document.getElementById('ml-en'),mg=document.getElementById('ml-gr');
+  if(me)me.classList.toggle('active',l==='en');
+  if(mg)mg.classList.toggle('active',l==='gr');
+  const t=T[l];
+  document.querySelectorAll('[data-key]').forEach(el=>{const k=el.getAttribute('data-key');if(t[k]!==undefined)el.textContent=t[k];});
+  document.querySelectorAll('[data-ph]').forEach(el=>{const k=el.getAttribute('data-ph');if(t[k]!==undefined)el.placeholder=t[k];});
+}
+function showPage(p){
+  document.querySelectorAll('.page').forEach(x=>x.classList.remove('active'));
+  document.getElementById('page-'+p).classList.add('active');
+  document.querySelectorAll('.nav-links a').forEach(a=>a.classList.remove('active'));
+  const nl=document.getElementById('nl-'+p);if(nl)nl.classList.add('active');
+  window.scrollTo({top:0,behavior:'smooth'});
+  setTimeout(initFades,150);
+}
+function toggleNav(){document.getElementById('mobileNav').classList.toggle('open');}
+function initFades(){
+  const obs=new IntersectionObserver(en=>{en.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target);}});},{threshold:.1});
+  document.querySelectorAll('.fade-in:not(.visible)').forEach(el=>obs.observe(el));
+}
+function handleSubmit(btn){
+  const t=T[lang];
+  btn.textContent=lang==='en'?'✓ Sent!':'✓ Εστάλη!';
+  btn.style.background='#2d6a4f';btn.style.color='#fff';
+  setTimeout(()=>{btn.textContent=t.fsub;btn.style.background='';btn.style.color='';},3000);
+}
+document.addEventListener('DOMContentLoaded',()=>{setLang('en');initFades();});
+</script>
+</body>
+</html>
